@@ -2,11 +2,12 @@ package workloads
 
 import (
 	"fmt"
-	log "github.com/sirupsen/logrus"
-	"github.com/spf13/cobra"
 	"os"
 	"regexp"
 	"strings"
+
+	log "github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
 )
 
 var dynamicStorageProvisioners = map[string]string{
@@ -56,7 +57,7 @@ func NewPVCDensity(wh *WorkloadHelper) *cobra.Command {
 	cmd.Flags().IntVar(&iterations, "iterations", 0, fmt.Sprintf("%v iterations", iterations))
 	cmd.Flags().StringVar(&provisioner, "provisioner", provisioner, fmt.Sprintf(
 		"[%s]", strings.Join(storageProvisioners, " ")))
-	cmd.Flags().StringVar(&claimSize, "claim-size", "256Mi", fmt.Sprintf("claim-size=256Mi"))
+	cmd.Flags().StringVar(&claimSize, "claim-size", "256Mi", "claim-size=256Mi")
 	cmd.Flags().StringVar(&containerImage, "container-image", "gcr.io/google_containers/pause:3.1", "Container image")
 
 	return cmd
