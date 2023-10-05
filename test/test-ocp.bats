@@ -93,8 +93,10 @@ teardown_file() {
   run kube-burner ocp networkpolicy-multitenant --iterations 5  ${COMMON_FLAGS}
   [ "$status" -eq 0 ]
 }
+
 @test "pvc-density" {
-  run kube-burner ocp pvc-density --iterations=2
+  # Since 'aws' is the chosen storage provisioner, this will only execute successfully if the ocp environment is aws
+  run kube-burner ocp pvc-density --iterations=2 --provisioner=aws
   [ "$status" -eq 0 ]
   run check_metric_value cpu-kubelet clusterMetadata jobSummary podLatencyMeasurement podLatencyQuantilesMeasurement
   [ "$status" -eq 0 ]

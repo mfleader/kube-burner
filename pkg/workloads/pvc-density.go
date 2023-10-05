@@ -24,10 +24,10 @@ var dynamicStorageProvisioners = map[string]string{
 func NewPVCDensity(wh *WorkloadHelper) *cobra.Command {
 
 	var iterations int
-	var provisioner string
 	var storageProvisioners []string
 	var claimSize string
 	var containerImage string
+	provisioner := "aws"
 
 	cmd := &cobra.Command{
 		Use:          "pvc-density",
